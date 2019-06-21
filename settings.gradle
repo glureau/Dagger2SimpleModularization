@@ -1,0 +1,1 @@
+include ':AppA', ':AppB', ':ModuleBase', ':ModuleFeatureCommon', ':ModuleFeatureFoo', ':ModuleFeatureBar'
