@@ -27,7 +27,9 @@ android {
 
 dependencies {
     api project(':ModuleBase')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
+
 repositories {
     mavenCentral()
 }

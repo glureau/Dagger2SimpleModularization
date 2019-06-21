@@ -1,8 +1,8 @@
-package com.glureau.modulethemea
+package com.glureau.featurefoo
 
 import com.glureau.modulebase.BaseService
 import javax.inject.Inject
 
 class FeatureFooService @Inject constructor(private val baseService: BaseService) {
-    fun getFoo() = "Foo: " + baseService.hello()
+    fun getFoo() = "FOO: " + baseService.hello()
 }

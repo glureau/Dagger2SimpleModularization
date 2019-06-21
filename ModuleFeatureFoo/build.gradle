@@ -27,7 +27,11 @@ android {
 
 dependencies {
     api project(':ModuleFeatureCommon')
+
+    // Because it defines a Dagger Module (no kapt in this lib)
+    implementation 'com.google.dagger:dagger:2.23.2'
 }
+
 repositories {
     mavenCentral()
 }

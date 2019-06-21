@@ -6,6 +6,3 @@ interface BaseService {
     fun hello(): String
 }
 
-class BaseServiceImpl @Inject constructor() : BaseService {
-    override fun hello() = "I'm BaseService"
-}

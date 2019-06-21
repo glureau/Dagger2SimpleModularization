@@ -4,18 +4,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.glureau.modulebase.BaseServiceImpl
-import com.glureau.modulethemea.FeatureFooService
-import com.glureau.modulethemeb.BarBaseService
-import com.glureau.modulethemeb.FeatureBarService
+import com.glureau.featurebar.BarFragment
+import com.glureau.featurefoo.FeatureFooService
+import com.glureau.featurebar.FeatureBarService
+import com.glureau.featurefoo.FooFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import javax.inject.Inject
 
 class MainActivityB : AppCompatActivity() {
 
+    @Inject
+    lateinit var featureFooService: FeatureFooService
+
+    @Inject
+    lateinit var featureBarService: FeatureBarService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        appBInjector().inject(this)
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -24,9 +34,14 @@ class MainActivityB : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        val messageFoo = FeatureFooService(BaseServiceImpl()).getFoo()
-        val messageBar = FeatureBarService(BarBaseService()).getBar()
+        val messageFoo = featureFooService.getFoo()
+        val messageBar = featureBarService.getBar()
         text_view.text = "$messageFoo\n$messageBar"
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container_bar, BarFragment.newInstance())
+            .replace(R.id.container_foo, FooFragment.newInstance())
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
