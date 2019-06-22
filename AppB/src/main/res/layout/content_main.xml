@@ -27,6 +27,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view"/>
+
     <FrameLayout
             android:id="@+id/container_foo"
             android:layout_width="match_parent"

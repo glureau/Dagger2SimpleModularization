@@ -7,6 +7,10 @@
 - Reduce Dagger usage to reduce build time when possible (Dagger relies on annotation processing, massively increasing build time)
 - Simplify scoping: skip memory optimization (for now), focus on @Singleton or unscoped (instance created on demand)
 
+## Architecture of this sample:
+
+![Architecture schema...](docs/schema.png)
+
 # Patterns
 
 ## Define WHERE to inject (Injector + InjectorProvider)

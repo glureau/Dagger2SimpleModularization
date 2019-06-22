@@ -5,16 +5,21 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
-import com.glureau.modulebase.BaseServiceImpl
 import com.glureau.featurefoo.FeatureFooService
+import com.glureau.featurefoo.FooFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import javax.inject.Inject
 
 class MainActivityA : AppCompatActivity() {
 
+    @Inject
+    lateinit var featureFooService: FeatureFooService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appAInjector().inject(this)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -23,8 +28,11 @@ class MainActivityA : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        val message = FeatureFooService(BaseServiceImpl()).getBar()
-        text_view.text = message
+        text_view.text = featureFooService.getFoo()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container_foo, FooFragment.newInstance())
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
